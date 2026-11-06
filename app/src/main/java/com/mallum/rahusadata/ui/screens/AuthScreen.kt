@@ -42,6 +42,7 @@ fun AuthScreen(
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var refCode by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val context = LocalContext.current
     val activity = context as? FragmentActivity
