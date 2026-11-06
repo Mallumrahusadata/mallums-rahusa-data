@@ -46,6 +46,10 @@ fun BuyDataScreen(
 
     val networks = listOf("MTN", "Airtel", "Glo", "9mobile")
 
+    LaunchedEffect(selectedNetwork) {
+        viewModel.loadDataPlans(selectedNetwork)
+    }
+
     fun detectNetwork(phone: String): String? {
         val clean = phone.filter { it.isDigit() }
         if (clean.length < 4) return null
