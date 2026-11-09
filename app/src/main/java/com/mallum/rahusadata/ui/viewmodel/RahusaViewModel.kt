@@ -30,8 +30,7 @@ class RahusaViewModel(
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
     init {
-        // Auto-login default demo customer for immediate usability
-        loginCustomerDemo()
+        // Load public data/settings without automatically authenticating a demo account.
         loadDataPlans()
         loadSettings()
     }
