@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
     // Default URL pointing to the backend (or 10.0.2.2 for Android emulator)
-    private var baseUrl: String = "https://ais-dev-cc4lb23jk77hurlwdn5yoa-994895090150.europe-west2.run.app/api/"
+    private var baseUrl: String = "https://mallums-rahusa-data-backend.onrender.com/api/"
     private var authToken: String? = null
 
     fun setBaseUrl(url: String) {
