@@ -110,8 +110,9 @@ fun AuthScreen(
                 ) {
                     Button(
                         onClick = {
-                            viewModel.loginCustomerDemo()
-                            onAuthSuccess()
+                            viewModel.loginCustomerDemo {
+                                onAuthSuccess()
+                            }
                         },
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.buttonColors(containerColor = BlueLight),
@@ -122,8 +123,9 @@ fun AuthScreen(
 
                     Button(
                         onClick = {
-                            viewModel.loginAdminDemo()
-                            onAuthSuccess()
+                            viewModel.loginAdminDemo {
+                                onAuthSuccess()
+                            }
                         },
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.buttonColors(containerColor = GreenLight),
@@ -293,13 +295,47 @@ fun AuthScreen(
 
                 Button(
                     onClick = {
+                        viewModel.clearMessages()
+
                         if (isRegister) {
-                            viewModel.register(fullName, email, phoneNumber, password, refCode.ifBlank { null }) {
-                                onAuthSuccess()
+                            val cleanPhone = phoneNumber.filter { it.isDigit() }
+
+                            when {
+                                fullName.trim().length < 2 ->
+                                    viewModel.showError("Please enter your full name.")
+
+                                !email.contains("@") ->
+                                    viewModel.showError("Please enter a valid email address.")
+
+                                cleanPhone.length < 10 ->
+                                    viewModel.showError("Please enter a valid Nigerian phone number.")
+
+                                password.length < 6 ->
+                                    viewModel.showError("Password must be at least 6 characters.")
+
+                                else ->
+                                    viewModel.register(
+                                        fullName.trim(),
+                                        email.trim(),
+                                        cleanPhone,
+                                        password,
+                                        refCode.ifBlank { null }
+                                    ) {
+                                        onAuthSuccess()
+                                    }
                             }
                         } else {
-                            viewModel.login(email, password) {
-                                onAuthSuccess()
+                            when {
+                                !email.contains("@") ->
+                                    viewModel.showError("Please enter a valid email address.")
+
+                                password.isBlank() ->
+                                    viewModel.showError("Please enter your password.")
+
+                                else ->
+                                    viewModel.login(email.trim(), password) {
+                                        onAuthSuccess()
+                                    }
                             }
                         }
                     },

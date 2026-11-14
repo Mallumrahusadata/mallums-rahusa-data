@@ -254,7 +254,13 @@ class RahusaRepository {
         return try {
             if (json != null) {
                 val obj = JSONObject(json)
-                obj.optString("error", "An error occurred")
+                obj.optString(
+                    "error",
+                    obj.optString(
+                        "message",
+                        obj.optString("detail", "An error occurred")
+                    )
+                )
             } else {
                 "Network request failed"
             }

@@ -91,6 +91,13 @@ class RahusaViewModel(
         _uiState.value = _uiState.value.copy(errorMessage = null, successMessage = null)
     }
 
+    fun showError(message: String) {
+        _uiState.value = _uiState.value.copy(
+            isLoading = false,
+            errorMessage = message
+        )
+    }
+
     fun dismissReceipt() {
         _uiState.value = _uiState.value.copy(activeReceipt = null)
     }
