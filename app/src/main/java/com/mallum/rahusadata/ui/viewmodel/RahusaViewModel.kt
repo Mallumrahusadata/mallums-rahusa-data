@@ -75,12 +75,12 @@ class RahusaViewModel(
         }
     }
 
-    fun loginCustomerDemo() {
-        login("customer@rahusadata.com", "password123")
+    fun loginCustomerDemo(onSuccess: () -> Unit) {
+        login("customer@rahusadata.com", "password123", onSuccess)
     }
 
-    fun loginAdminDemo() {
-        login("abubakarisahmallum@gmail.com", "password123")
+    fun loginAdminDemo(onSuccess: () -> Unit) {
+        login("abubakarisahmallum@gmail.com", "password123", onSuccess)
     }
 
     fun logout() {
