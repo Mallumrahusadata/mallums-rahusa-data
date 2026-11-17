@@ -321,7 +321,10 @@ fun AuthScreen(
                                         password,
                                         refCode.ifBlank { null }
                                     ) {
-                                        onAuthSuccess()
+                                        isRegister = false
+                                        password = ""
+                                        refCode = ""
+                                        viewModel.clearMessages()
                                     }
                             }
                         } else {

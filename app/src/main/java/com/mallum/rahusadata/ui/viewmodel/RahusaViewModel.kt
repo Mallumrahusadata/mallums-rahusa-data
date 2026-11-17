@@ -41,10 +41,10 @@ class RahusaViewModel(
             val res = repository.login(email, pass)
             res.onSuccess { auth ->
                 _uiState.value = _uiState.value.copy(
-                    user = auth.user,
-                    isLoading = false
+                    isLoading = false,
+                    errorMessage = null,
+                    successMessage = "Account created successfully. Please sign in."
                 )
-                loadTransactions()
                 onSuccess()
             }.onFailure { err ->
                 _uiState.value = _uiState.value.copy(

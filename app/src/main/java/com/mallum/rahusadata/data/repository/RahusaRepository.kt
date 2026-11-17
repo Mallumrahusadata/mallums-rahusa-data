@@ -31,7 +31,6 @@ class RahusaRepository {
         val res = api.register(params)
         if (res.isSuccessful && res.body() != null) {
             val auth = res.body()!!
-            ApiClient.setAuthToken(auth.token)
             auth
         } else {
             throw Exception(parseError(res.errorBody()?.string()))
