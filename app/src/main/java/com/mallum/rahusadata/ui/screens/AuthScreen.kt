@@ -149,8 +149,9 @@ fun AuthScreen(
                             title = "MALLUM'S RAHUSA DATA",
                             subtitle = "Confirm fingerprint or face to sign in instantly",
                             onSuccess = {
-                                viewModel.loginCustomerDemo()
-                                onAuthSuccess()
+                                viewModel.loginCustomerDemo {
+                                    onAuthSuccess()
+                                }
                             },
                             onError = { /* handled gracefully */ }
                         )
